@@ -1,0 +1,42 @@
+.main{
+    position: absolute;
+    background-color: var(--color-bg);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    height: 100vh;
+    transition: all 1s ease;
+    &.disable{
+        opacity: 0;
+        // display: none;
+        height: 0;
+    }
+    &.diplayNone{
+        display: none;
+    }
+    img{
+        width: 4rem;
+        height: 4rem;
+        position: relative;
+        margin: 0 auto;
+        top: 50vh;
+        margin-top: -2rem;
+        animation: beat 1s ease-in-out alternate infinite;
+    }
+}
+
+@keyframes beat{
+    from{
+        scale: 0.9;
+    }
+    To{
+        scale: 1;
+    }
+}
+@keyframes beatEnd{
+    To{
+        scale: 0%;
+    }
+}

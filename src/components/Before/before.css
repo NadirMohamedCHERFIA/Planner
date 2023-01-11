@@ -1,0 +1,56 @@
+.main {
+  position: absolute;
+  background-color: var(--color-bg);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  height: 100vh;
+  transition: all 1s ease;
+}
+.main.disable {
+  opacity: 0;
+  height: 0;
+}
+.main.diplayNone {
+  display: none;
+}
+.main img {
+  width: 4rem;
+  height: 4rem;
+  position: relative;
+  margin: 0 auto;
+  top: 50vh;
+  margin-top: -2rem;
+  -webkit-animation: beat 1s ease-in-out alternate infinite;
+          animation: beat 1s ease-in-out alternate infinite;
+}
+
+@-webkit-keyframes beat {
+  from {
+    scale: 0.9;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+@keyframes beat {
+  from {
+    scale: 0.9;
+  }
+  to {
+    scale: 1;
+  }
+}
+@-webkit-keyframes beatEnd {
+  to {
+    scale: 0%;
+  }
+}
+@keyframes beatEnd {
+  to {
+    scale: 0%;
+  }
+}/*# sourceMappingURL=before.css.map */
