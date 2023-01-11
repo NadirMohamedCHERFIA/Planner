@@ -66,7 +66,7 @@ const TabledList = ()=>{
                     <td className='col' >{el.id}</td>
                     <td className='col'>{el.title}</td>
                     <td className='col'>{el.description}</td>
-                    <td className='col'>{d.toLocaleDateString()}</td>
+                    <td className='col'>{el.deadeline ? el.deadeline : d.toLocaleDateString()}</td>
                     <td className='col'><input type="checkbox" checked={el.colmpleted} onChange={handleChange}/></td>
                     {/* <td className='col modifie'  onClick={handleClick(el)} key={el.title} checked={el.colmpleted ? 'checked' : ""}><ButtonAdd/></td> */}
                     <td className='col'><ButtonRem obj={el}/></td>
