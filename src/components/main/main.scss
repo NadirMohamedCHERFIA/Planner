@@ -15,6 +15,7 @@ td{
 .col{
     width: 8rem;
 }
+
 .min-container{
     background-color: var(--color-primary);
     position: relative;
@@ -42,6 +43,11 @@ td{
     flex-direction: column;
     margin-top: 2rem;
     align-items: center;
+    // border: 1px solid red;
+    .scanme{
+        width: 8rem;
+        background-color: white;
+    }
     &.blur{
         animation: blur 2s ease;
     }

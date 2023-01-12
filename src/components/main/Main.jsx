@@ -78,7 +78,7 @@ const TabledList = ()=>{
                     <td className='col'>{el.title}</td>
                     <td className='col'>{el.description}</td>
                     <td className='col'>{el.deadeline ? el.deadeline : normaleDate}</td>
-                    <td className='col' key={el.id}  ><input type="checkbox" onChange={()=>handleCheckBoxClick(el.id)}  checked={el.completed} ref={check}/></td>
+                    <td className='col' key={el.id}  ><input type="checkbox" onClick={()=>handleCheckBoxClick(el.id)}  checked={el.completed} ref={check}/></td>
                     {/* <td className='col modifie'  onClick={handleClick(el)} key={el.title} checked={el.colmpleted ? 'checked' : ""}><ButtonAdd/></td> */}
                     <td className='col'><ButtonRem obj={el}/></td>
                 </tr>

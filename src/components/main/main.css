@@ -50,6 +50,10 @@ td {
   margin-top: 2rem;
   align-items: center;
 }
+.adding .scanme {
+  width: 8rem;
+  background-color: white;
+}
 .adding.blur {
   -webkit-animation: blur 2s ease;
           animation: blur 2s ease;
