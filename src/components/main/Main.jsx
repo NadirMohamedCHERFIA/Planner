@@ -1,5 +1,5 @@
 import './main.css'
-import {useContext, useEffect, useState} from 'react'
+import {useContext, useEffect, useMemo, useRef, useState} from 'react'
 import Adding from './Adding'
 import Form from './form'
 import { toDoListExp} from './toDoList'
@@ -17,11 +17,11 @@ import { toDoListContext } from './contexte'
 const ButtonRem=(props)=>{
     const{toDoList,setToDoList} = useContext(toDoListContext)
     const handleRemoveClick = ()=>{
-       toDoList.map((t) => {
-        if(t.id===props.obj.id){
-            console.log("there is a match at"+t.id)
-            setToDoList(toDoList.filter(element=>element.id!==props.obj.id))
-        }
+        toDoList.map((t) => {
+            if(t.id===props.obj.id){
+                console.log("there is a match at"+t.id)
+                setToDoList(toDoList.filter(element=>element.id!==props.obj.id))
+            }
     })
     }
     return <>
@@ -31,21 +31,30 @@ const ButtonRem=(props)=>{
     </>
 }
 
-
-
-
-const handleClick=(props)=>{
-    console.log('clicked')
-}
-
 const TabledList = ()=>{
-    const {toDoList} = useContext(toDoListContext)
+    const {toDoList,setToDoList} = useContext(toDoListContext)
     let d = new Date()
+    console.log("setting table"+ JSON.stringify(toDoList))
     useEffect(()=>{
-        console.log("rerender");
-    },[toDoList])
-    const handleChange=()=>{
-        console.log("a complete state changed")
+        console.log("rerender"+JSON.stringify(toDoList));
+        localStorage.setItem('todolist',JSON.stringify(toDoList))
+        setToDoList(toDoList)
+        console.log("aprés rerender"+toDoList);
+    })
+    const check = useRef(null)
+
+    const handleCheckBoxClick=(key)=>{
+        console.log("a complete state changed"+key)
+        toDoList.map((e)=>{
+            if(e.id===key){
+                console.log('match')
+                console.log(check.current.checked)
+                e.completed = check.current.checked
+                localStorage.setItem('todolist',JSON.stringify(toDoList))
+                setToDoList(JSON.parse(localStorage.getItem('todolist')))
+            }
+        })
+        console.log(toDoList)
     }
     return <>
         <table>
@@ -67,7 +76,7 @@ const TabledList = ()=>{
                     <td className='col'>{el.title}</td>
                     <td className='col'>{el.description}</td>
                     <td className='col'>{el.deadeline ? el.deadeline : d.toLocaleDateString()}</td>
-                    <td className='col'><input type="checkbox" checked={el.colmpleted} onChange={handleChange}/></td>
+                    <td className='col' key={el.id}  ><input type="checkbox" onChange={()=>handleCheckBoxClick(el.id)}  checked={el.completed} ref={check}/></td>
                     {/* <td className='col modifie'  onClick={handleClick(el)} key={el.title} checked={el.colmpleted ? 'checked' : ""}><ButtonAdd/></td> */}
                     <td className='col'><ButtonRem obj={el}/></td>
                 </tr>
@@ -88,7 +97,12 @@ const Main = ()=>{
     setActivated(!activated)
     console.log("close request")
     }
-    const [toDoList,setToDoList] = useState(toDoListExp)
+    const [toDoList,setToDoList] = useState(JSON.parse(localStorage.getItem('todolist')) ? JSON.parse(localStorage.getItem('todolist')) : toDoListExp)
+    useEffect(()=>{
+        localStorage.setItem('todolist',JSON.stringify(toDoList))
+        // setToDoList(JSON.parse(localStorage.getItem('todolist')))
+        console.log("Todo modified"+JSON.stringify(toDoList))
+    },[toDoList])
     const onSubmit = (props)=>{          
         setActivated(false)
         if(props.titlep.current.value !==""){
