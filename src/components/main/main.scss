@@ -114,7 +114,10 @@ td{
         margin-top: 1rem;
     }
 }
-
+.tableRow{
+    display: flex;
+    align-items: center;
+}
 @keyframes success{
     0%{
         scale: 0;
@@ -139,9 +142,9 @@ td{
     *{
         font-size: 7px;
     }
-    // .container {
-    //         &.main {
-    //             color: green;
-    //         }
-    //     }
+}
+@media screen and (max-width: 1024px){
+    *{
+        font-size: 10px;
+    }
 }

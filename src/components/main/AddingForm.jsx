@@ -41,7 +41,7 @@ const AddingForm = (props) => {
             <div className='form-element'>
                 <label htmlFor="title" >Title( <span style={{color: 'red'}} alt="Obligatory">*</span>): </label>
                 <br></br>
-                <input type="text" name='title' placeholder='Enter the title' ref={title} require/>
+                <input type="text" name='title' placeholder='Enter the title' ref={title} required/>
             </div>
             <div className='form-element'>
                 <label htmlFor="description" >Description: </label>
@@ -52,9 +52,6 @@ const AddingForm = (props) => {
                 <label htmlFor="date">Deadline</label>
                 <br></br>
                 <input type="date" name='date' max="2033-12-31" id="date"  ref={dateRef}/>
-            </div>
-            <div className="success">
-                Succesfully added
             </div>
             <div className='form-element'>
                 <button type='submit' className='btn' onClick={handleClick}>Add</button>

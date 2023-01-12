@@ -126,6 +126,11 @@ td {
   margin-top: 1rem;
 }
 
+.tableRow {
+  display: flex;
+  align-items: center;
+}
+
 @-webkit-keyframes success {
   0% {
     scale: 0;
@@ -168,5 +173,10 @@ td {
 @media screen and (max-width: 600px) {
   * {
     font-size: 7px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  * {
+    font-size: 10px;
   }
 }/*# sourceMappingURL=main.css.map */

@@ -3,16 +3,35 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    .logo{
-        margin-top: 2rem;
+    .header{
         display: flex;
+        width: 100%;
         align-items: center;
-        gap: 1rem;
-        font-family: 'Rubik Bubbles', cursive;
-        font-size: 2rem;
-        margin-bottom: 2rem;
-        img{
-            width: 2rem;
-        }
+        justify-content: center;
+        .logo{
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-family: 'Rubik Bubbles', cursive;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            img{
+                width: 2rem;
+            }
     }
+    }
+    .social{
+        z-index: inherit;
+        display: flex;
+        gap: 1rem;
+        a>*{
+            scale: 2;
+            margin-left: 2rem;
+            &:hover{
+                scale: 2.2;
+            }
+        }
+        }
 }

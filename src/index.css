@@ -10,9 +10,9 @@
 
 :root {
   --color-bg: #021f35;
-  --color-bg-variant: #5EB1BF;
+  --color-bg-variant: #022d3f;
   --color-primary: #03a7dd;
-  --color-primary-variant: rgba(77, 181, 255, 0.4);
+  --color-primary-variant: rgba(35, 22, 68, 0.4);
   --color-white: #fff;
   --color-light: rgba(255, 255, 255, 0.6);
   --container-width-lg: 75%;
@@ -30,6 +30,12 @@ body {
   background-color: var(--color-bg);
   color: var(--color-white);
   line-height: 1.7;
+}
+body.light {
+  --color-bg:rgb(117, 205, 243);
+  --color-white:black;
+  --color-light:black;
+  --color-bg-variant: #a7e9f8;
 }
 
 .container {

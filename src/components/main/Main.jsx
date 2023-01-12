@@ -1,11 +1,16 @@
 import './main.css'
-import {useContext, useEffect, useMemo, useRef, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import Adding from './Adding'
 import Form from './form'
 import { toDoListExp} from './toDoList'
 
 import { toDoListContext } from './contexte'
+const timediff = (date1,date2)=>{
+    const date1arr= date1 ? date1.split('-').join('') : ""
+    const date2arr= date2 ? date2.split('-').join('') : ""
+    return(parseInt(date2arr)-parseInt(date1arr))
 
+}
 
 // const ButtonAdd=()=>{
 //     return <>
@@ -17,9 +22,8 @@ import { toDoListContext } from './contexte'
 const ButtonRem=(props)=>{
     const{toDoList,setToDoList} = useContext(toDoListContext)
     const handleRemoveClick = ()=>{
-        toDoList.map((t) => {
+        toDoList.forEach((t) => {
             if(t.id===props.obj.id){
-                console.log("there is a match at"+t.id)
                 setToDoList(toDoList.filter(element=>element.id!==props.obj.id))
             }
     })
@@ -34,29 +38,20 @@ const ButtonRem=(props)=>{
 const TabledList = ()=>{
     const {toDoList,setToDoList} = useContext(toDoListContext)
     let d = new Date()
-    let dString = d.toLocaleDateString().split('/')
+    let dString = d.toLocaleDateString().split('/').reverse()
     let normaleDate = dString.join('-')
-    console.log("setting table"+ JSON.stringify(toDoList))
     useEffect(()=>{
-        console.log("rerender"+JSON.stringify(toDoList));
         localStorage.setItem('todolist',JSON.stringify(toDoList))
         setToDoList(toDoList)
-        console.log("aprés rerender"+toDoList);
     })
-    const check = useRef(null)
-
     const handleCheckBoxClick=(key)=>{
-        console.log("a complete state changed"+key)
-        toDoList.map((e)=>{
+        toDoList.forEach((e)=>{
             if(e.id===key){
-                console.log('match')
-                console.log(check.current.checked)
-                e.completed = check.current.checked
+                e.completed = !e.completed
                 localStorage.setItem('todolist',JSON.stringify(toDoList))
                 setToDoList(JSON.parse(localStorage.getItem('todolist')))
             }
         })
-        console.log(toDoList)
     }
     return <>
         <table>
@@ -67,18 +62,19 @@ const TabledList = ()=>{
                     <th className='col'>Description</th>
                     <th className='col'>DeadLine</th>
                     <th className='col'>Completed</th>
-                    {/* <th className='col'>Edit task</th> */}
+                    <th className='col'>To deadline</th>
                     <th className='col'>Remove task</th>
                 </tr>
             </thead>
             <tbody>
         {toDoList.map((el)=>
-                <tr key={el.id}>
+                <tr key={el.id} className="tableRow" style={el.completed?{color:'green'}: ((timediff(normaleDate,el.deadeline)===0 || normaleDate,el.deadeline)===1) || isNaN(timediff(normaleDate,el.deadeline)) ? {color:'orange'} :(timediff(normaleDate,el.deadeline)<0) ? {color:'red'} : {color:'var(--color-white)'}}>
                     <td className='col' >{el.id}</td>
                     <td className='col'>{el.title}</td>
                     <td className='col'>{el.description}</td>
                     <td className='col'>{el.deadeline ? el.deadeline : normaleDate}</td>
-                    <td className='col' key={el.id}  ><input type="checkbox" onClick={()=>handleCheckBoxClick(el.id)}  checked={el.completed} ref={check}/></td>
+                    <td className='col' key={el.id}  ><input type="checkbox" onClick={()=>handleCheckBoxClick(el.id)}  checked={el.completed}/></td>
+                <td className='col'>{el.completed ? "Done" : timediff(normaleDate,el.deadeline)>=0 ? timediff(normaleDate,el.deadeline)+" days" : isNaN(timediff(normaleDate,el.deadeline)) ? "0 days" : "passed" }</td>
                     {/* <td className='col modifie'  onClick={handleClick(el)} key={el.title} checked={el.colmpleted ? 'checked' : ""}><ButtonAdd/></td> */}
                     <td className='col'><ButtonRem obj={el}/></td>
                 </tr>
@@ -97,24 +93,21 @@ const Main = ()=>{
     }
     const closehandle = ()=>{
     setActivated(!activated)
-    console.log("close request")
     }
     const [toDoList,setToDoList] = useState(JSON.parse(localStorage.getItem('todolist')) ? JSON.parse(localStorage.getItem('todolist')) : toDoListExp)
     useEffect(()=>{
         localStorage.setItem('todolist',JSON.stringify(toDoList))
-        // setToDoList(JSON.parse(localStorage.getItem('todolist')))
-        console.log("Todo modified"+JSON.stringify(toDoList))
-    },[toDoList])
+        },[toDoList])
     const onSubmit = (props)=>{          
         setActivated(false)
         if(props.titlep.current.value !==""){
                 toDoList.push({id:toDoList.length ? parseInt(toDoList[toDoList.length-1].id)+1 : 1,title:props.titlep.current.value,description:props.descriptionp.current.value,deadeline:props.date.current.value})
-            }else{alert("please fill the obligatory field")}
+            }else{alert("Cannot add a task with an empty name")}
         }
     return<toDoListContext.Provider value={{toDoList,setToDoList}}>
-        <div className="container" >
+        <div className="container"  >
             {!activated ?<> 
-            <div className="scrollable">
+            <div className="scrollable"style={{backgroundColor:'var(--color-bg-variant)',borderRadius:"1rem"}}>
                 <TabledList/>
             </div>
             <Form/> </> : null}
