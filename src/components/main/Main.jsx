@@ -34,6 +34,8 @@ const ButtonRem=(props)=>{
 const TabledList = ()=>{
     const {toDoList,setToDoList} = useContext(toDoListContext)
     let d = new Date()
+    let dString = d.toLocaleDateString().split('/')
+    let normaleDate = dString.join('-')
     console.log("setting table"+ JSON.stringify(toDoList))
     useEffect(()=>{
         console.log("rerender"+JSON.stringify(toDoList));
@@ -75,7 +77,7 @@ const TabledList = ()=>{
                     <td className='col' >{el.id}</td>
                     <td className='col'>{el.title}</td>
                     <td className='col'>{el.description}</td>
-                    <td className='col'>{el.deadeline ? el.deadeline : d.toLocaleDateString()}</td>
+                    <td className='col'>{el.deadeline ? el.deadeline : normaleDate}</td>
                     <td className='col' key={el.id}  ><input type="checkbox" onChange={()=>handleCheckBoxClick(el.id)}  checked={el.completed} ref={check}/></td>
                     {/* <td className='col modifie'  onClick={handleClick(el)} key={el.title} checked={el.colmpleted ? 'checked' : ""}><ButtonAdd/></td> */}
                     <td className='col'><ButtonRem obj={el}/></td>
