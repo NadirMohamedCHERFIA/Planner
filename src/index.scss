@@ -7,6 +7,7 @@
     text-decoration: none;
     box-sizing: border-box;
     font-size: 1vw;
+    font-weight:400;
 }
 
 :root {
@@ -16,10 +17,12 @@
     --color-primary-variant: rgba(35, 22, 68, 0.4);
     --color-white: #fff;
     --color-light: rgba(255, 255, 255, 0.6);
+    --color-green : rgb(0, 118, 0);
+    --color-orange : rgb(227, 162, 40);
 
     --container-width-lg: 75%;
-    --container-width-md: 80%;
-    --container-width-sm: 87%;
+    --container-width-md: 85%;
+    --container-width-sm: 95%;
     --transition: all 400ms ease;
 }
 
@@ -35,14 +38,17 @@ body {
     &.light{
         --color-bg:rgb(117, 205, 243);
         --color-white :black;
-        --color-light:black;
+        --color-light:rgb(84, 80, 80);
         --color-bg-variant: #a7e9f8;
+        --color-green:rgb(0, 150, 0);
+        --color-orange:rgb(182, 123, 12);
+        .btn-primary{
+            color: var(--color-light);
+        }
     }
     font-family: "Poppins", sans-serif;
     background-color: var(--color-bg);
-    // background-color: var(white);    
     color: var(--color-white);
-    // color: var(black);
     line-height: 1.7;
 }
 
@@ -121,14 +127,23 @@ img {
 
 @media screen and (max-width:1024px) {
     .container {
-        width: var(--container-width-md);
+        width: var(--container-width-md) !important;
+    }
+    * {
+        font-size: 1.5vw;
     }
 }
 
 @media screen and (max-width:600px) {
     .container {
         width: var(--container-width-sm);
+    }
+    .btn{
         font-size: 8px;
+    }
+    *{
+        font-size: 1.5vw;
+            box-sizing: border-box;
     }
 
 }

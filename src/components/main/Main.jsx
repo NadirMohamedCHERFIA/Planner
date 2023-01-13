@@ -68,7 +68,7 @@ const TabledList = ()=>{
             </thead>
             <tbody>
         {toDoList.map((el)=>
-                <tr key={el.id} className="tableRow" style={el.completed?{color:'green'}: ((timediff(normaleDate,el.deadeline)===0 || normaleDate,el.deadeline)===1) || isNaN(timediff(normaleDate,el.deadeline)) ? {color:'orange'} :(timediff(normaleDate,el.deadeline)<0) ? {color:'red'} : {color:'var(--color-white)'}}>
+                <tr key={el.id} className="tableRow" style={el.completed?{color:'var(--color-green)'}: ((timediff(normaleDate,el.deadeline)===0 || normaleDate,el.deadeline)===1) || isNaN(timediff(normaleDate,el.deadeline)) ? {color:'var(--color-orange'} :(timediff(normaleDate,el.deadeline)<0) ? {color:'red'} : {color:'var(--color-white)'}}>
                     <td className='col' >{el.id}</td>
                     <td className='col'>{el.title}</td>
                     <td className='col'>{el.description}</td>

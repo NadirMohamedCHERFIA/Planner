@@ -49,14 +49,14 @@ td {
   flex-direction: column;
   margin-top: 2rem;
   align-items: center;
+  justify-content: center;
 }
 .adding .scanme {
   width: 8rem;
   background-color: white;
 }
-.adding.blur {
-  -webkit-animation: blur 2s ease;
-          animation: blur 2s ease;
+.adding .description {
+  text-align: center;
 }
 
 .adding-form {
@@ -75,16 +75,22 @@ td {
   width: 100%;
   border-radius: 0.2rem;
   padding: 0.5rem;
+  border: none;
+}
+.adding-form input:active, .adding-form textarea:active {
+  border: 1px solid;
 }
 .adding-form .close {
   position: absolute;
   color: red;
-  top: 0;
+  top: 0.5rem;
   right: 1rem;
+  scale: 2;
+  transform: rotate(45deg);
 }
 .adding-form .close:hover {
   cursor: pointer;
-  scale: 1.1;
+  scale: 2.1;
 }
 .adding-form .form-element {
   margin: 0 auto;
@@ -159,7 +165,22 @@ td {
     height: -webkit-max-content;
     height: -moz-max-content;
     height: max-content;
-    max-height: 70rem;
+    max-height: 70vh;
+  }
+  .adding-form {
+    width: 80%;
+    height: 50%;
+  }
+  .adding-form input,
+.adding-form textarea,
+.adding-form .close,
+.adding-form .btn {
+    scale: 3;
+    padding: 1rem;
+    margin-bottom: 8rem;
+  }
+  .adding-form .close:hover {
+    scale: 3.1 !important;
   }
 }
 @media screen and (max-width: 600px) {
@@ -167,6 +188,15 @@ td {
     height: -webkit-max-content;
     height: -moz-max-content;
     height: max-content;
-    max-height: 80vh;
+    max-height: 70vh;
+  }
+  .adding-form {
+    width: 80%;
+    height: 50%;
+  }
+  .adding-form input, .adding-form textarea, .adding-form .close, .adding-form .btn {
+    scale: 3;
+    padding: 1rem;
+    margin-bottom: 8rem;
   }
 }/*# sourceMappingURL=main.css.map */

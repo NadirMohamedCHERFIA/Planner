@@ -1,13 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
 .container{
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
     .header{
         display: flex;
-        width: 100%;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         .logo{
             margin-top: 2rem;
             display: flex;
@@ -34,4 +30,25 @@
             }
         }
         }
+}
+
+@media screen and (max-width:1024px) {
+    .header{
+        width: 100%;
+    }
+    .header>*{
+        scale: 2;
+    }
+    .social{
+        margin-left: 16rem;
+    }
+}
+@media screen and (max-width:600px) {
+    .header>*{
+        scale: 2;
+    }
+    .social{
+        margin-left: 8rem;
+    }
+
 }

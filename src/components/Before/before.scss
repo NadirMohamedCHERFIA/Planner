@@ -1,7 +1,6 @@
 .main{
     &.disable {
         opacity: 0;
-        // display: none;
         height: 0;
         z-index: -10;
     }
@@ -41,4 +40,22 @@
     To{
         scale: 0%;
     }
+}
+
+
+@media screen and (max-width:1024px) {
+    .main{
+        img{
+            scale: 5 !important;
+        }
+        }
+
+}
+@media screen and (max-width:600px) {
+    .main{
+        img{
+            scale: 5 !important;
+        }
+        }
+
 }
