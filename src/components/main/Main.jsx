@@ -73,7 +73,7 @@ const TabledList = ()=>{
                     <td className='col'>{el.title}</td>
                     <td className='col'>{el.description}</td>
                     <td className='col'>{el.deadeline ? el.deadeline : normaleDate}</td>
-                    <td className='col' key={el.id}  ><input type="checkbox" onClick={()=>handleCheckBoxClick(el.id)}  checked={el.completed}/></td>
+                    <td className='col' key={el.id}  ><input type="checkbox" onClick={()=>handleCheckBoxClick(el.id)} onChange={()=>{return null}}  checked={el.completed}/></td>
                 <td className='col'>{el.completed ? "Done" : timediff(normaleDate,el.deadeline)>=0 ? timediff(normaleDate,el.deadeline)+" days" : isNaN(timediff(normaleDate,el.deadeline)) ? "0 days" : "passed" }</td>
                     {/* <td className='col modifie'  onClick={handleClick(el)} key={el.title} checked={el.colmpleted ? 'checked' : ""}><ButtonAdd/></td> */}
                     <td className='col'><ButtonRem obj={el}/></td>
@@ -101,7 +101,7 @@ const Main = ()=>{
     const onSubmit = (props)=>{          
         setActivated(false)
         if(props.titlep.current.value !==""){
-                toDoList.push({id:toDoList.length ? parseInt(toDoList[toDoList.length-1].id)+1 : 1,title:props.titlep.current.value,description:props.descriptionp.current.value,deadeline:props.date.current.value})
+                toDoList.push({id:toDoList.length ? parseInt(toDoList[toDoList.length-1].id)+1 : 1,title:props.titlep.current.value,description:props.descriptionp.current.value,deadeline:props.date.current.value,completed : false})
             }else{alert("Cannot add a task with an empty name")}
         }
     return<toDoListContext.Provider value={{toDoList,setToDoList}}>

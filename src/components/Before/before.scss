@@ -1,4 +1,13 @@
 .main{
+    &.disable {
+        opacity: 0;
+        // display: none;
+        height: 0;
+        z-index: -10;
+    }
+    &.diplayNone {
+        display: none;
+    }
     position: absolute;
     background-color: var(--color-bg);
     top: 0;
@@ -9,14 +18,6 @@
     height:100%;
     transition: all 1s ease;
     z-index: 100;
-    &.disable{
-        opacity: 0;
-        // display: none;
-        height: 0;
-    }
-    &.diplayNone{
-        display: none;
-    }
     img{
         width: 4rem;
         height: 4rem;

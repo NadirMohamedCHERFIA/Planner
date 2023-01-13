@@ -7,25 +7,14 @@ import {CiLight} from 'react-icons/ci'
 import { useState } from 'react'
 import {CiDark} from 'react-icons/ci'
 const root = document.querySelector("body");
-console.log(root)
 const Header=()=>{
     const logoRef = useRef(null);
-    useEffect(()=>{
-        if(logoRef){
-            
-        }
-    })
-    const [mode,setMode] = useState(localStorage.getItem('mode') ? localStorage.getItem('mode') : false);
+    const [mode,setMode]= useState(false);
     const handleClick = ()=>{
-        setMode((mode)=>{
-            localStorage.setItem('mode',!mode);
-            return !mode
-        })
-        mode ? root.classList.add("light") : root.classList.remove("light")    
-        console.log(mode)
+        setMode(!mode)
     }
     useEffect(()=>{
-            mode ? root.classList.add("light") : root.classList.remove("light")
+        mode ? root.classList.add('light') : root.classList.remove('light')
     })
     return <>
         <div className="container" >
@@ -38,7 +27,7 @@ const Header=()=>{
                     <div className="social">
                         <a href="https://github.com/NadirMohamedCHERFIA" target='_blank' rel='noreferrer'><AiFillGithub/></a>
                         <a href="https://www.linkedin.com/feed/" target='_blank' rel='noreferrer'><AiOutlineLinkedin/></a>
-                        <a >{mode ? <CiLight onClick={handleClick}/> : <CiDark onClick={handleClick}/>}</a>
+                        <a onClick={handleClick}>{mode ? <CiLight/> : <CiDark />}</a>
                     </div>
             </div>
         </div>

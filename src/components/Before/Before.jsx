@@ -1,7 +1,7 @@
 import './before.css'
 import { React,useEffect,useRef } from 'react';
 import Logo from './../../assets/images/f.png'
-
+const img = document.querySelector('.beforelogo')
 const Before =()=>{
     const main = useRef(null);
         useEffect(()=>{
@@ -15,7 +15,7 @@ const Before =()=>{
     return <>
         <div className="main" ref={main}>
             <div className="main-logo">
-                <img src={Logo} alt="" />
+                <img className='beforelogo' src={Logo} alt="" />
             </div>
         </div>
     </>
