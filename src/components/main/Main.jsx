@@ -62,7 +62,7 @@ const TabledList = ()=>{
                     <th className='col'>Description</th>
                     <th className='col'>DeadLine</th>
                     <th className='col'>Completed</th>
-                    <th className='col'>To deadline</th>
+                    <th className='col'>Remaining</th>
                     <th className='col'>Remove task</th>
                 </tr>
             </thead>
