@@ -11,14 +11,6 @@ const timediff = (date1,date2)=>{
     return(parseInt(date2arr)-parseInt(date1arr))
 
 }
-
-// const ButtonAdd=()=>{
-//     return <>
-//         <div className="btn btn-primary">
-//             Modify
-//         </div>
-//     </>
-// }
 const ButtonRem=(props)=>{
     const{toDoList,setToDoList} = useContext(toDoListContext)
     const handleRemoveClick = ()=>{
@@ -75,7 +67,6 @@ const TabledList = ()=>{
                     <td className='col'>{el.deadeline ? el.deadeline : normaleDate}</td>
                     <td className='col' key={el.id}  ><input type="checkbox" onClick={()=>handleCheckBoxClick(el.id)} onChange={()=>{return null}}  checked={el.completed}/></td>
                 <td className='col'>{el.completed ? "Done" : timediff(normaleDate,el.deadeline)>=0 ? timediff(normaleDate,el.deadeline)+" days" : isNaN(timediff(normaleDate,el.deadeline)) ? "0 days" : "passed" }</td>
-                    {/* <td className='col modifie'  onClick={handleClick(el)} key={el.title} checked={el.colmpleted ? 'checked' : ""}><ButtonAdd/></td> */}
                     <td className='col'><ButtonRem obj={el}/></td>
                 </tr>
         )}
